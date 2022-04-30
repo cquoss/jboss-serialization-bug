@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -20,8 +21,11 @@ public class Main {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         JBossObjectOutputStream objectOutputStream = new JBossObjectOutputStream(byteArrayOutputStream);
         objectOutputStream.writeObject(toSerialize);
+        // log byte array
+        byte[] buf = byteArrayOutputStream.toByteArray();
+        LOGGER.info("[buf.length={},buf.hashCode={}]", buf.length, Arrays.hashCode(buf));
         // deserialize object
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(buf);
         JBossObjectInputStream objectInputStream = new JBossObjectInputStream(byteArrayInputStream);
         Object deserialized = objectInputStream.readObject();
         LOGGER.info("[deserialized={},deserialized.class.name={}", deserialized, deserialized.getClass().getName());
