@@ -146,3 +146,8 @@ Caused by: java.io.EOFException
 
 Process finished with exit code 1
 ```
+Update 05/01/2022, 1.17pm:
+
+This [commit](https://github.com/openjdk/jdk8u/commit/a90219cc90ba499b731fa1c00304919f8b0493b5) is responsible for this bug. After this change jboss-serialization is simply not compatible with the jdk implementation of java.util.Hashtable any more.
+
+Instead of fixing jboss-serialization i think best would be to get rid of jboss-serialization in jboss-cache.
