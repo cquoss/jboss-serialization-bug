@@ -17,7 +17,6 @@ public class Main {
     private void run() throws Exception {
         // object to serialize
         Map<String, Object> toSerialize = new Hashtable<>();
-        toSerialize.getClass().
         // serialize object
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         JBossObjectOutputStream objectOutputStream = new JBossObjectOutputStream(byteArrayOutputStream);
